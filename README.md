@@ -6,6 +6,12 @@ OpenTelemetry instrumentation and LGTM observability stack.
 
 The first step is to get your application code instrumented with [opentelemetry](https://opentelemetry.io) and sending its metrics, traces and logs to the opentelemetry [collector](https://opentelemetry.io/docs/collector).
 
+For this example we will use the OTLP HTTP exporters:
+
+```bash
+npm install @opentelemetry/exporter-metrics-otlp-http @opentelemetry/exporter-trace-otlp-http @opentelemetry/exporter-logs-otlp-http
+```
+
 ```javascript
 // ./instrumentation.js
 const OpenTelemetry = require('opentelemetry-lgtm');
