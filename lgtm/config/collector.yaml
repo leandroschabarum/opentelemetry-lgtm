@@ -1,0 +1,43 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  prometheusremotewrite:
+    endpoint: http://mimir:8080/api/v1/push
+
+  otlphttp/tempo:
+    endpoint: http://tempo:4318
+    tls:
+      insecure: true
+
+  otlphttp/loki:
+    endpoint: http://loki:3100/otlp
+
+processors:
+  batch: {}
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 400
+    spike_limit_mib: 100
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [prometheusremotewrite]
+
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlphttp/tempo]
+
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlphttp/loki]

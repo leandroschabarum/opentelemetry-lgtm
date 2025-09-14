@@ -1,0 +1,62 @@
+# https://github.com/grafana/intro-to-mltp
+services:
+  collector:
+    image: otel/opentelemetry-collector:0.135.0
+    container_name: collector
+    command: ["--config=/etc/collector.yaml"]
+    ports:
+      - "127.0.0.1:55679:55679" # OTLP zPages
+      - "127.0.0.1:4317:4317"   # OTLP gRPC ingest
+      - "127.0.0.1:4318:4318"   # OTLP HTTP ingest
+    volumes:
+      - ./lgtm/config/collector.yaml:/etc/collector.yaml:ro
+    depends_on:
+      - mimir
+      - tempo
+      - loki
+
+  grafana:
+    image: grafana/grafana:12.1
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./lgtm/config/datasources:/etc/grafana/provisioning/datasources
+      # - ./lgtm/data/grafana:/var/lib/grafana
+    depends_on:
+      - mimir
+      - tempo
+      - loki
+
+  mimir:
+    image: grafana/mimir:2.17.1
+    container_name: mimir
+    command: ["-config.file=/etc/mimir.yaml"]
+    volumes:
+      - ./lgtm/config/mimir.yaml:/etc/mimir.yaml
+      # - ./lgtm/data/mimir:/tmp/mimir
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  tempo:
+    image: grafana/tempo:2.8.2
+    container_name: tempo
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./lgtm/config/tempo.yaml:/etc/tempo.yaml
+      # - ./lgtm/data/tempo:/tmp/tempo
+    ports:
+      - "127.0.0.1:3200:3200"
+
+  loki:
+    image: grafana/loki:3.5
+    container_name: loki
+    command: ["-config.file=/etc/loki.yaml"]
+    volumes:
+      - ./lgtm/config/loki.yaml:/etc/loki.yaml
+      # - ./lgtm/data/loki:/tmp/loki
+    ports:
+      - "127.0.0.1:3100:3100"

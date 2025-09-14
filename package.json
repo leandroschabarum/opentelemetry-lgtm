@@ -1,0 +1,64 @@
+{
+	"name": "opentelemetry-lgtm",
+	"version": "1.0.0",
+	"description": "OpenTelemetry instrumentation and LGTM observability stack.",
+	"type": "module",
+	"private": true,
+	"author": "Leandro Schabarum <leandroschabarum.98@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"build": "tsdown --tsconfig tsconfig.prod.json",
+		"build:watch": "tsdown --tsconfig tsconfig.prod.json --watch",
+		"package": "npm run build; npm pack",
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"lint": "eslint",
+		"format": "prettier --write"
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/leandroschabarum/opentelemetry-lgtm.git"
+	},
+	"bugs": {
+		"url": "https://github.com/leandroschabarum/opentelemetry-lgtm/issues"
+	},
+	"homepage": "https://github.com/leandroschabarum/opentelemetry-lgtm#readme",
+	"devDependencies": {
+		"@eslint/js": "^9.30.1",
+		"@tsconfig/recommended": "^1.0.10",
+		"@types/jest": "^29.5.13",
+		"@types/node": "^24.0.10",
+		"@typescript-eslint/eslint-plugin": "^8.35.1",
+		"@typescript-eslint/parser": "^8.35.1",
+		"eslint": "^9.30.1",
+		"jest": "^29.7.0",
+		"prettier": "^3.6.2",
+		"ts-jest": "^29.2.5",
+		"ts-node": "^10.9.2",
+		"tsdown": "^0.15.1",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.35.1"
+	},
+	"dependencies": {
+		"@opentelemetry/api-logs": "^0.205.0",
+		"@opentelemetry/auto-instrumentations-node": "^0.64.1",
+		"@opentelemetry/resources": "^2.1.0",
+		"@opentelemetry/sdk-logs": "^0.205.0",
+		"@opentelemetry/sdk-metrics": "^2.1.0",
+		"@opentelemetry/sdk-node": "^0.205.0",
+		"@opentelemetry/sdk-trace-node": "^2.1.0"
+	}
+}
