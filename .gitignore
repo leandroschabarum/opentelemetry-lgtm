@@ -137,3 +137,4 @@ docs
 
 # Build output
 dist
+lgtm/data/*
