@@ -14,7 +14,7 @@ npm install @opentelemetry/exporter-metrics-otlp-http @opentelemetry/exporter-tr
 
 ```javascript
 // ./instrumentation.js
-const OpenTelemetry = require('opentelemetry-lgtm');
+const OpenTelemetry = require('@lndr/opentelemetry-lgtm');
 const { OTLPMetricExporter } = require('@opentelemetry/exporter-metrics-otlp-http');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
 const { OTLPLogExporter } = require('@opentelemetry/exporter-logs-otlp-http');
