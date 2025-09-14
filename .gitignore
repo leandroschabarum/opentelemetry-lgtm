@@ -137,4 +137,13 @@ docs
 
 # Build output
 dist
-lgtm/data/*
+
+lgtm/data/grafana/*
+lgtm/data/loki/*
+lgtm/data/mimir/*
+lgtm/data/tempo/*
+
+!lgtm/data/grafana/.gitkeep
+!lgtm/data/loki/.gitkeep
+!lgtm/data/mimir/.gitkeep
+!lgtm/data/tempo/.gitkeep
