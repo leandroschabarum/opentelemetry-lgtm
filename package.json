@@ -1,7 +1,7 @@
 {
 	"name": "opentelemetry-lgtm",
 	"version": "1.0.0",
-	"description": "OpenTelemetry instrumentation and LGTM observability stack.",
+	"description": "Boilerplate for OpenTelemetry instrumentation with the LGTM observability stack.",
 	"type": "module",
 	"private": true,
 	"author": "Leandro Schabarum <leandroschabarum.98@gmail.com>",
