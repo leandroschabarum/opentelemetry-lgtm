@@ -143,17 +143,10 @@ lgtm/data/loki/*
 lgtm/data/mimir/*
 lgtm/data/tempo/*
 
-lgtm/config/collector/*
-lgtm/config/loki/*
-lgtm/config/mimir/*
-lgtm/config/tempo/*
-
 !lgtm/data/grafana/.gitkeep
 !lgtm/data/loki/.gitkeep
 !lgtm/data/mimir/.gitkeep
 !lgtm/data/tempo/.gitkeep
 
-!lgtm/config/collector/collector.base.yaml
-!lgtm/config/loki/loki.base.yaml
-!lgtm/config/mimir/mimir.base.yaml
-!lgtm/config/tempo/tempo.base.yaml
+lgtm/config/*
+!lgtm/config/*.base.yaml
