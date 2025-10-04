@@ -4,7 +4,7 @@ services:
     container_name: collector
     command: ["--config=/etc/collector.yaml"]
     volumes:
-      - ./lgtm/config/collector.yaml:/etc/collector.yaml:ro
+      - ${COLLECTOR_CONFIG:-./lgtm/config/collector.yaml}:/etc/collector.yaml:ro
     ports:
       - "127.0.0.1:55679:55679" # OTLP zPages
       - "127.0.0.1:4317:4317"   # OTLP gRPC ingest
@@ -20,7 +20,7 @@ services:
     user: root
     volumes:
       - ./lgtm/config/datasources:/etc/grafana/provisioning/datasources
-      # - ./lgtm/data/grafana:/var/lib/grafana
+      - ${GRAFANA_DATA:-./lgtm/data/grafana}:/var/lib/grafana
     ports:
       - "127.0.0.1:3000:3000"
     environment:
