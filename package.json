@@ -1,6 +1,6 @@
 {
 	"name": "@lndr/opentelemetry-lgtm",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Boilerplate for OpenTelemetry instrumentation with the LGTM observability stack.",
 	"type": "module",
 	"author": "Leandro Schabarum <leandroschabarum.98@gmail.com>",
