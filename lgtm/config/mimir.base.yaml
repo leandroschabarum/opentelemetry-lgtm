@@ -17,8 +17,7 @@ blocks_storage:
     bucket_name: ${MIMIR_AWS_BUCKET}
     access_key_id: ${MIMIR_AWS_ACCESS_KEY_ID}
     secret_access_key: ${MIMIR_AWS_SECRET_ACCESS_KEY}
-    # s3forcepathstyle: true
-    insecure: true
+    insecure: ${INSECURE_CONNECTION}
 
 compactor:
   data_dir: /tmp/mimir/compactor

@@ -30,5 +30,4 @@ storage_config:
     bucketnames: ${LOKI_AWS_BUCKET}
     access_key_id: ${LOKI_AWS_ACCESS_KEY_ID}
     secret_access_key: ${LOKI_AWS_SECRET_ACCESS_KEY}
-    # s3forcepathstyle: true
-    insecure: true
+    insecure: ${INSECURE_CONNECTION}

@@ -28,8 +28,7 @@ storage:
       bucket: ${TEMPO_AWS_BUCKET}
       access_key: ${TEMPO_AWS_ACCESS_KEY_ID}
       secret_key: ${TEMPO_AWS_SECRET_ACCESS_KEY}
-      # forcepathstyle: true
-      insecure: true
+      insecure: ${INSECURE_CONNECTION}
     wal:
       path: /tmp/tempo/wal
 
