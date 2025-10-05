@@ -147,3 +147,6 @@ lgtm/data/tempo/*
 !lgtm/data/loki/.gitkeep
 !lgtm/data/mimir/.gitkeep
 !lgtm/data/tempo/.gitkeep
+
+lgtm/config/*
+!lgtm/config/*.base.yaml

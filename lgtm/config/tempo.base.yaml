@@ -19,9 +19,16 @@ compactor:
 
 storage:
   trace:
-    backend: local
+    backend: ${TEMPO_STORAGE_BACKEND}
     local:
       path: /tmp/tempo/blocks
+    s3:
+      region: ${TEMPO_AWS_REGION}
+      endpoint: ${TEMPO_AWS_ENDPOINT}
+      bucket: ${TEMPO_AWS_BUCKET}
+      access_key: ${TEMPO_AWS_ACCESS_KEY_ID}
+      secret_key: ${TEMPO_AWS_SECRET_ACCESS_KEY}
+      insecure: ${INSECURE_CONNECTION}
     wal:
       path: /tmp/tempo/wal
 

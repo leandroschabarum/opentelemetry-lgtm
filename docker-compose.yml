@@ -4,7 +4,7 @@ services:
     container_name: collector
     command: ["--config=/etc/collector.yaml"]
     volumes:
-      - ./lgtm/config/collector.yaml:/etc/collector.yaml:ro
+      - ${COLLECTOR_CONFIG:-./lgtm/config/collector.yaml}:/etc/collector.yaml:ro
     ports:
       - "127.0.0.1:55679:55679" # OTLP zPages
       - "127.0.0.1:4317:4317"   # OTLP gRPC ingest
@@ -20,7 +20,7 @@ services:
     user: root
     volumes:
       - ./lgtm/config/datasources:/etc/grafana/provisioning/datasources
-      - ./lgtm/data/grafana:/var/lib/grafana
+      - ${GRAFANA_DATA:-./lgtm/data/grafana}:/var/lib/grafana
     ports:
       - "127.0.0.1:3000:3000"
     environment:
@@ -37,8 +37,8 @@ services:
     command: ["-config.file=/etc/mimir.yaml"]
     user: root
     volumes:
-      - ./lgtm/config/mimir.yaml:/etc/mimir.yaml
-      - ./lgtm/data/mimir:/tmp/mimir
+      - ${MIMIR_CONFIG:-./lgtm/config/mimir.yaml}:/etc/mimir.yaml:ro
+      - ${MIMIR_DATA:-./lgtm/data/mimir}:/tmp/mimir
     ports:
       - "127.0.0.1:8080:8080"
 
@@ -48,8 +48,8 @@ services:
     command: ["-config.file=/etc/tempo.yaml"]
     user: root
     volumes:
-      - ./lgtm/config/tempo.yaml:/etc/tempo.yaml
-      - ./lgtm/data/tempo:/tmp/tempo
+      - ${TEMPO_CONFIG:-./lgtm/config/tempo.yaml}:/etc/tempo.yaml:ro
+      - ${TEMPO_DATA:-./lgtm/data/tempo}:/tmp/tempo
     ports:
       - "127.0.0.1:3200:3200"
 
@@ -59,7 +59,7 @@ services:
     command: ["-config.file=/etc/loki.yaml"]
     user: root
     volumes:
-      - ./lgtm/config/loki.yaml:/etc/loki.yaml
-      - ./lgtm/data/loki:/tmp/loki
+      - ${LOKI_CONFIG:-./lgtm/config/loki.yaml}:/etc/loki.yaml:ro
+      - ${LOKI_DATA:-./lgtm/data/loki}:/tmp/loki
     ports:
       - "127.0.0.1:3100:3100"

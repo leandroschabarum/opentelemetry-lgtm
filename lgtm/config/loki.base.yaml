@@ -13,9 +13,9 @@ common:
 
 schema_config:
   configs:
-  - from: 2020-05-15
+  - from: 2020-10-24
     store: tsdb
-    object_store: filesystem
+    object_store: ${LOKI_STORAGE_BACKEND}
     schema: v13
     index:
       prefix: index_
@@ -24,3 +24,10 @@ schema_config:
 storage_config:
   filesystem:
     directory: /tmp/loki/chunks
+  aws:
+    region: ${LOKI_AWS_REGION}
+    endpoint: ${LOKI_AWS_ENDPOINT}
+    bucketnames: ${LOKI_AWS_BUCKET}
+    access_key_id: ${LOKI_AWS_ACCESS_KEY_ID}
+    secret_access_key: ${LOKI_AWS_SECRET_ACCESS_KEY}
+    insecure: ${INSECURE_CONNECTION}
