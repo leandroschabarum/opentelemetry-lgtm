@@ -15,8 +15,25 @@ permissions:
   id-token: write
 
 jobs:
+  check-token:
+    name: Check NPM token
+    runs-on: ubuntu-latest
+    outputs:
+      has-token: ${{ steps.status.outputs.defined }}
+    steps:
+      - id: status
+        env:
+          TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then
+            echo "defined=true" >> $GITHUB_OUTPUT
+          else
+            echo "defined=false" >> $GITHUB_OUTPUT
+          fi
   build-and-publish:
     name: Publish version
+    needs: check-token
+    if: needs.check-token.outputs.has-token == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
