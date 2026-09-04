@@ -31,7 +31,7 @@ interface Exporters {
 function sdk<T extends Configuration>(
 	service: string,
 	options: Partial<T> = {}
-): { start(): void } {
+): Pick<NodeSDK, 'start' | 'shutdown'> {
 	if (sdk._instance) return sdk._instance;
 
 	const [name, version] = service.split(':');
@@ -44,7 +44,7 @@ function sdk<T extends Configuration>(
 		(exporter) => new BatchSpanProcessor(exporter)
 	);
 	const logProcessors = exporters?.logs?.map(
-		(exporter) => new BatchLogRecordProcessor(exporter)
+		(exporter) => new BatchLogRecordProcessor({ exporter })
 	);
 
 	const logProvider = logger(service, { processors: logProcessors });
