@@ -44,7 +44,7 @@ function sdk<T extends Configuration>(
 		(exporter) => new BatchSpanProcessor(exporter)
 	);
 	const logProcessors = exporters?.logs?.map(
-		(exporter) => new BatchLogRecordProcessor(exporter)
+		(exporter) => new BatchLogRecordProcessor({ exporter })
 	);
 
 	const logProvider = logger(service, { processors: logProcessors });
