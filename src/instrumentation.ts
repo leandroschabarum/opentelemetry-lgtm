@@ -31,7 +31,7 @@ interface Exporters {
 function sdk<T extends Configuration>(
 	service: string,
 	options: Partial<T> = {}
-): { start(): void } {
+): Pick<NodeSDK, 'start' | 'shutdown'> {
 	if (sdk._instance) return sdk._instance;
 
 	const [name, version] = service.split(':');
